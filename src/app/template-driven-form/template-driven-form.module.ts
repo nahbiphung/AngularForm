@@ -1,14 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { TemplateDrivenFormRoutingModule } from './template-driven-form-routing.module';
-import { TemplateDrivenFormComponent } from './template-driven-form/template-driven-form.component';
+import { TemplateDrivenFormRoutingModule } from "./template-driven-form-routing.module";
+import { TemplateDrivenFormComponent } from "./template-driven-form/template-driven-form.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [TemplateDrivenFormComponent],
-  imports: [
-    CommonModule,
-    TemplateDrivenFormRoutingModule
-  ]
+  imports: [CommonModule, FormsModule, TemplateDrivenFormRoutingModule],
 })
-export class TemplateDrivenFormModule { }
+export class TemplateDrivenFormModule {}

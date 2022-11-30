@@ -2,18 +2,29 @@
 
 <div class="reactive-form">
   <h3>User Form</h3>
+  {{ userForm.value | json }}
 
-  <form>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div>
       <label for="name">Name</label>
-      <input type="text" id="name" required />
+      <input type="text" id="name" formControlName="name" />
+    </div>
+    <!-- {{ nameRef.className }} -->
+
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">
+      <div *ngIf="name.errors.required">Name is required.</div>
+      <div *ngIf="name.errors.maxlength">
+        Name must be at least 10 characters long.
+      </div>
     </div>
 
     <div>
       <label for="age">Age</label>
-      <input type="number" id="age" />
+      <input type="number" id="age" formControlName="age" max="11" />
     </div>
 
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-success" [disabled]="!userForm.valid">
+      Submit
+    </button>
   </form>
 </div>

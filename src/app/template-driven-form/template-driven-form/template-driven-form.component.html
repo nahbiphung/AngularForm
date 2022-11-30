@@ -2,18 +2,45 @@
 
 <div class="template-driven-form">
   <h3>User Form</h3>
+  {{ user | json }}
 
-  <form>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
     <div>
       <label for="name">Name</label>
-      <input type="text" id="name" required />
+      <input
+        type="text"
+        id="name"
+        required
+        maxlength="10"
+        [(ngModel)]="user.name"
+        name="name"
+        #nameRef
+        #name="ngModel"
+      />
     </div>
+    {{ nameRef.className }}
+
+    <div *ngIf="!name.valid">Name is required</div>
 
     <div>
       <label for="age">Age</label>
-      <input type="number" id="age" />
+      <input
+        type="number"
+        id="age"
+        required
+        max="10"
+        min="5"
+        [(ngModel)]="user.age"
+        name="age"
+      />
     </div>
 
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="!userForm.form.valid"
+    >
+      Submit
+    </button>
   </form>
 </div>
